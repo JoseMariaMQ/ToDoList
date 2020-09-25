@@ -5,7 +5,6 @@
 
     & form {
       width: 60%;
-      //margin: 0 20%;
       display: grid;
       grid-template-columns: 1fr 40px;
       grid-template-rows: 1fr 1fr;
@@ -87,6 +86,55 @@
   &__validation {
     text-align: center;
     color: red;
+  }
+
+  &__task {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  &__list {
+    width: 60%;
+    justify-self: center;
+  }
+
+  &__item {
+    height: 50px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr 50px;
+    grid-template-rows: 1fr;
+
+    & span:first-child {
+      justify-self: center;
+      align-self: center;
+    }
+    & span:nth-child(2) {
+      justify-self: start;
+      align-self: center;
+      padding-left: 50px;
+    }
+    & span:nth-child(3) {
+      justify-self: end;
+      align-self: center;
+      padding-right: 50px;
+    }
+    & span:last-child {
+      justify-self: center;
+      align-self: center;
+    }
+  }
+
+  &__color-red {
+    background-color: $color-red;
+  }
+  &__color-orange {
+    background-color: $color-orange;
+  }
+  &__color-green {
+    background-color: $color-green;
   }
 }
 

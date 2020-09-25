@@ -153,6 +153,26 @@ body { display: grid; grid-template-columns: 1fr; grid-template-rows: 100px 1fr 
 
 .main__validation { text-align: center; color: red; }
 
+.main__task { display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; }
+
+.main__list { width: 60%; justify-self: center; }
+
+.main__item { height: 50px; margin-bottom: 10px; border-radius: 5px; display: grid; grid-template-columns: 50px 1fr 1fr 50px; grid-template-rows: 1fr; }
+
+.main__item span:first-child { justify-self: center; align-self: center; }
+
+.main__item span:nth-child(2) { justify-self: start; align-self: center; padding-left: 50px; }
+
+.main__item span:nth-child(3) { justify-self: end; align-self: center; padding-right: 50px; }
+
+.main__item span:last-child { justify-self: center; align-self: center; }
+
+.main__color-red { background-color: #e74c3c; }
+
+.main__color-orange { background-color: #ffa726; }
+
+.main__color-green { background-color: #2ecc71; }
+
 @media screen and (min-width: 768px) { .main__form form { margin: 0 20%; } }
 
 .footer { margin-top: 25px; text-align: center; }

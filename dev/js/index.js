@@ -12,6 +12,16 @@ const radioGreen = document.getElementById('green')
 
 const taskList = document.getElementById('task-list')
 
+const MILLISECONDS_OF_A_SECOND = 1000;
+const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
+const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
+const MILLISECONDS_OF_A_DAY = MILLISECONDS_OF_A_HOUR * 24
+
+let REMAINING_DAYS
+let REMAINING_HOURS
+let REMAINING_MINUTES
+let REMAINING_SECONDS
+
 function addZero(i) {
     if(i < 10) i = '0' + i
     return i
@@ -27,6 +37,20 @@ function todayDate() {
     mm = addZero(mm)
 
     return yyyy+'-'+mm+'-'+dd
+}
+
+// Countdown
+function countdown() {
+    const NOW = new Date()
+    const DURATION = new Date(JSON.parse(localStorage.getItem(localStorage.key(0))).date) - NOW
+    REMAINING_DAYS = Math.floor(DURATION / MILLISECONDS_OF_A_DAY);
+    REMAINING_HOURS = Math.floor((DURATION % MILLISECONDS_OF_A_DAY) / MILLISECONDS_OF_A_HOUR);
+    REMAINING_MINUTES = Math.floor((DURATION % MILLISECONDS_OF_A_HOUR) / MILLISECONDS_OF_A_MINUTE);
+    REMAINING_SECONDS = Math.floor((DURATION % MILLISECONDS_OF_A_MINUTE) / MILLISECONDS_OF_A_SECOND);
+}
+
+function list() {
+    taskList.innerHTML = `<div class="main__item main__color-${JSON.parse(localStorage.getItem(localStorage.key(0))).priority}"><span><i class="fas fa-thumbtack"></i></span><span>${JSON.parse(localStorage.getItem(localStorage.key(0))).task}</span><span>${REMAINING_DAYS}D ${REMAINING_HOURS}H ${REMAINING_MINUTES}M ${REMAINING_SECONDS}S</span><span><i class="fas fa-trash-alt"></i></span></div>`
 }
 
 form.addEventListener('submit', (e) => {
@@ -67,7 +91,13 @@ form.addEventListener('submit', (e) => {
             }
         }
     }
+    countdown()
+    list()
+    setInterval(countdown, MILLISECONDS_OF_A_SECOND);
+    setInterval(list, MILLISECONDS_OF_A_SECOND);
 })
 
-console.log(JSON.parse(localStorage.getItem(localStorage.key(0))))
-taskList.innerHTML += `<li><span>${JSON.parse(localStorage.getItem(localStorage.key(0))).task}</span></li>`
+countdown()
+
+setInterval(countdown, MILLISECONDS_OF_A_SECOND);
+setInterval(list, MILLISECONDS_OF_A_SECOND);
