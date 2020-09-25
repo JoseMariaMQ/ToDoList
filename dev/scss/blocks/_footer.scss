@@ -1,0 +1,33 @@
+.footer {
+  margin-top: 25px;
+  text-align: center;
+
+  &__social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__link {
+    margin: 0 10px;
+    text-decoration: none;
+    color: $background-color3;
+  }
+  &__link:first-child:hover {
+    color: #0E76A8;
+  }
+  &__link:nth-child(2):hover {
+    color: #24292E;
+  }
+  &__link:last-child:hover {
+    color: #00ACEE;
+  }
+
+  &__name {
+    font-size: .7rem;
+  }
+
+  &__info {
+    color: $background-color3;
+    font-size: .8rem;
+  }
+}

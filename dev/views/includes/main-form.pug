@@ -1,0 +1,26 @@
+.main__form
+        form#form
+            .main__input1
+                input(type="text" name="task" placeholder="type a task")#task
+            .main__input2
+                .main__radio
+                    input(type="radio" name="priority" value="red")#red.radio
+                    label(for="red")
+                        span
+                            img(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon")
+                .main__radio
+                    input(type="radio" name="priority" value="orange")#orange.radio
+                    label(for="orange")
+                        span
+                            img(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon")
+                .main__radio
+                    input(type="radio" name="priority" value="green")#green.radio
+                    label(for="green")
+                        span
+                            img(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon")
+                input(type="date" name="date")#date
+            .main__button
+                button(type="submit")#button
+                    i.fas.fa-pencil-alt
+.main__validation
+    p#message

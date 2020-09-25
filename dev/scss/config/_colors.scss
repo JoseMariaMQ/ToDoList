@@ -1,0 +1,20 @@
+:root {
+  --text-color: #2C2C2C;
+  --text-color2: #EEE;
+  --background-color: #0D47A1;
+  --background-color2: #387EE9;
+  --background-color3: #888;
+  --background-color4: #AFBFD1;
+}
+
+$text-color: var(--text-color);
+$text-color2: var(--text-color2);
+$background-color: var(--background-color);
+$background-color2: var(--background-color2);
+$background-color3: var(--background-color3);
+$background-color4: var(--background-color4);
+
+// Colors
+$color-green: #2ecc71;
+$color-orange: #ffa726;
+$color-red: #e74c3c;

@@ -1,0 +1,10 @@
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px 1fr 200px;
+
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(13,71,161,1) 100%);
+  color: $text-color2;
+  min-height: 100vh;
+  font-family: $main-title, sans-serif;
+}

@@ -1,0 +1,102 @@
+.main {
+
+  &__form {
+    text-align: center;
+
+    & form {
+      width: 60%;
+      //margin: 0 20%;
+      display: grid;
+      grid-template-columns: 1fr 40px;
+      grid-template-rows: 1fr 1fr;
+      justify-items: stretch;
+    }
+  }
+
+  &__input1 {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    padding-left: 8px;
+
+    & input {
+      width: 100%;
+      border-radius: 3px;
+    }
+  }
+  &__input2 {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    display: grid;
+    grid-template-columns: repeat(3, 50px) 1fr;
+
+    input[type="radio"] {
+      display: none;
+
+      + label {
+
+        span {
+          display: inline-block;
+          width: 35px;
+          height: 35px;
+          cursor: pointer;
+          border-radius: 50%;
+          border: 2px solid #FFFFFF;
+          line-height: 35px;
+
+          img {
+            opacity: 0;
+            transition: all .3s ease;
+          }
+        }
+      }
+
+      &#red + label span {
+        background-color: $color-red;
+      }
+
+      &#orange + label span {
+        background-color: $color-orange;
+      }
+
+      &#green + label span {
+        background-color: $color-green;
+      }
+
+      &:checked + label span img {
+        opacity: 1;
+      }
+    }
+
+    & input[type=date] {
+      border-radius: 3px;
+    }
+  }
+  &__button {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 2;
+
+    & button {
+      height: 100%;
+      border-radius: 3px;
+    }
+    & button:hover {
+      background-color: $background-color2;
+    }
+  }
+
+  &__validation {
+    text-align: center;
+    color: red;
+  }
+}
+
+@include tablet {
+  .main {
+
+    &__form {
+      & form {
+        margin: 0 20%;
+      }
+    }
+  }
+}
