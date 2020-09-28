@@ -22,6 +22,9 @@ let REMAINING_HOURS
 let REMAINING_MINUTES
 let REMAINING_SECONDS
 
+let arrLocalstorage = []
+let arrLocalstorageUnique = []
+
 function addZero(i) {
     if(i < 10) i = '0' + i
     return i
@@ -40,19 +43,39 @@ function todayDate() {
 }
 
 // Countdown
-function countdown() {
+function countdown(date) {
     const NOW = new Date()
-    const DURATION = new Date(JSON.parse(localStorage.getItem(localStorage.key(0))).date) - NOW
+    const DURATION = new Date(date) - NOW
     REMAINING_DAYS = Math.floor(DURATION / MILLISECONDS_OF_A_DAY);
     REMAINING_HOURS = Math.floor((DURATION % MILLISECONDS_OF_A_DAY) / MILLISECONDS_OF_A_HOUR);
     REMAINING_MINUTES = Math.floor((DURATION % MILLISECONDS_OF_A_HOUR) / MILLISECONDS_OF_A_MINUTE);
     REMAINING_SECONDS = Math.floor((DURATION % MILLISECONDS_OF_A_MINUTE) / MILLISECONDS_OF_A_SECOND);
 }
 
+//Create task list in html
 function list() {
-    taskList.innerHTML = `<div class="main__item main__color-${JSON.parse(localStorage.getItem(localStorage.key(0))).priority}"><span><i class="fas fa-thumbtack"></i></span><span>${JSON.parse(localStorage.getItem(localStorage.key(0))).task}</span><span>${REMAINING_DAYS}D ${REMAINING_HOURS}H ${REMAINING_MINUTES}M ${REMAINING_SECONDS}S</span><span><i class="fas fa-trash-alt"></i></span></div>`
+    for(let item = 0; item<localStorage.length; item++) {
+        arrLocalstorage.push(localStorage.key(item))
+        arrLocalstorageUnique = [...new Set(arrLocalstorage)]
+        arrLocalstorageUnique.sort()
+    }
+    for(let itemLocalstorage of arrLocalstorageUnique) {
+        if(!document.getElementById('countdown-live'+arrLocalstorageUnique.indexOf(itemLocalstorage))) {
+            countdown(new Date(JSON.parse(localStorage.getItem(itemLocalstorage)).date))
+            taskList.innerHTML += `<div class="main__item main__color-${JSON.parse(localStorage.getItem(itemLocalstorage)).priority}"><span><i class="fas fa-thumbtack"></i></span><span>${JSON.parse(localStorage.getItem(itemLocalstorage)).task}</span><span id="countdown-live${arrLocalstorageUnique.indexOf(itemLocalstorage)}">${REMAINING_DAYS}D ${REMAINING_HOURS}H ${REMAINING_MINUTES}M ${REMAINING_SECONDS}S</span><span class="delete" id="${itemLocalstorage}"><i class="fas fa-trash-alt"></i></span></div>`
+        }
+    }
 }
 
+//Update countdown
+function countdownUpdate() {
+    for(let itemLocalstorage of arrLocalstorageUnique) {
+        countdown(new Date(JSON.parse(localStorage.getItem(itemLocalstorage)).date))
+        document.getElementById('countdown-live'+arrLocalstorageUnique.indexOf(itemLocalstorage)).innerText = `${REMAINING_DAYS}D ${REMAINING_HOURS}H ${REMAINING_MINUTES}M ${REMAINING_SECONDS}S`
+    }
+}
+
+//Data validation and task creation
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     if(task.value === '' || task.value === null || task.value === undefined) {
@@ -86,18 +109,28 @@ form.addEventListener('submit', (e) => {
                         date: date.value
                     }
                     localStorage.setItem(key, JSON.stringify(tasks))
+                    countdown(date.value)
+                    list()
                     form.reset()
+                    location.reload()
                 }
             }
         }
     }
-    countdown()
-    list()
-    setInterval(countdown, MILLISECONDS_OF_A_SECOND);
-    setInterval(list, MILLISECONDS_OF_A_SECOND);
 })
 
-countdown()
+setInterval(countdown, MILLISECONDS_OF_A_SECOND)
+setInterval(countdownUpdate, MILLISECONDS_OF_A_SECOND)
+list()
 
-setInterval(countdown, MILLISECONDS_OF_A_SECOND);
-setInterval(list, MILLISECONDS_OF_A_SECOND);
+const remove = document.querySelectorAll('.delete')
+
+//Delete task
+for(let i = 0; i<localStorage.length; i++) {
+    console.log(remove[i])
+    remove[i].addEventListener('click', () => {
+        console.log(remove[i].id)
+        localStorage.removeItem(remove[i].id)
+        location.reload()
+    })
+}

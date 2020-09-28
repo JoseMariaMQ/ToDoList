@@ -151,7 +151,7 @@ body { display: grid; grid-template-columns: 1fr; grid-template-rows: 100px 1fr 
 
 .main__button button:hover { background-color: var(--background-color2); }
 
-.main__validation { text-align: center; color: red; }
+.main__validation { text-align: center; color: red; height: 30px; }
 
 .main__task { display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; }
 
@@ -161,9 +161,9 @@ body { display: grid; grid-template-columns: 1fr; grid-template-rows: 100px 1fr 
 
 .main__item span:first-child { justify-self: center; align-self: center; }
 
-.main__item span:nth-child(2) { justify-self: start; align-self: center; padding-left: 50px; }
+.main__item span:nth-child(2) { justify-self: start; align-self: center; padding-left: 20px; }
 
-.main__item span:nth-child(3) { justify-self: end; align-self: center; padding-right: 50px; }
+.main__item span:nth-child(3) { justify-self: end; align-self: center; padding-right: 20px; }
 
 .main__item span:last-child { justify-self: center; align-self: center; }
 
