@@ -119,9 +119,9 @@ body { display: grid; grid-template-columns: 1fr; grid-template-rows: 100px 1fr 
 
 .header { width: 100%; text-align: center; font-size: .8rem; }
 
-.main__form { text-align: center; }
+.main__form { display: grid; justify-items: center; }
 
-.main__form form { width: 60%; display: grid; grid-template-columns: 1fr 40px; grid-template-rows: 1fr 1fr; justify-items: stretch; }
+.main__form form { width: 90%; margin: 0; display: grid; grid-template-columns: 1fr 40px; grid-template-rows: 1fr 1fr; justify-items: stretch; }
 
 .main__input1 { grid-column: 1 / span 1; grid-row: 1 / span 1; padding-left: 8px; }
 
@@ -147,7 +147,7 @@ body { display: grid; grid-template-columns: 1fr; grid-template-rows: 100px 1fr 
 
 .main__button { grid-column: 2 / span 1; grid-row: 1 / span 2; }
 
-.main__button button { height: 100%; border-radius: 3px; }
+.main__button button { height: 100%; border-radius: 3px; background-color: var(--text-color2); }
 
 .main__button button:hover { background-color: var(--background-color2); }
 
@@ -155,15 +155,15 @@ body { display: grid; grid-template-columns: 1fr; grid-template-rows: 100px 1fr 
 
 .main__task { display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; }
 
-.main__list { width: 60%; justify-self: center; }
+.main__list { width: 90%; justify-self: center; }
 
 .main__item { height: 50px; margin-bottom: 10px; border-radius: 5px; display: grid; grid-template-columns: 50px 1fr 1fr 50px; grid-template-rows: 1fr; }
 
 .main__item span:first-child { justify-self: center; align-self: center; }
 
-.main__item span:nth-child(2) { justify-self: start; align-self: center; padding-left: 20px; }
+.main__item span:nth-child(2) { justify-self: start; align-self: center; padding-left: 5px; font-size: .8rem; }
 
-.main__item span:nth-child(3) { justify-self: end; align-self: center; padding-right: 20px; }
+.main__item span:nth-child(3) { justify-self: end; align-self: center; padding-right: 5px; font-size: .8rem; }
 
 .main__item span:last-child { justify-self: center; align-self: center; }
 
@@ -173,7 +173,10 @@ body { display: grid; grid-template-columns: 1fr; grid-template-rows: 100px 1fr 
 
 .main__color-green { background-color: #2ecc71; }
 
-@media screen and (min-width: 768px) { .main__form form { margin: 0 20%; } }
+@media screen and (min-width: 768px) { .main__form form { width: 60%; margin: 0 20%; }
+  .main__list { width: 60%; }
+  .main__item span:nth-child(2) { padding-left: 20px; font-size: 1rem; }
+  .main__item span:nth-child(3) { padding-right: 20px; font-size: 1rem; } }
 
 .footer { margin-top: 25px; text-align: center; }
 
