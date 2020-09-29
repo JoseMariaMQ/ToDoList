@@ -127,9 +127,7 @@ const remove = document.querySelectorAll('.delete')
 
 //Delete task
 for(let i = 0; i<localStorage.length; i++) {
-    console.log(remove[i])
     remove[i].addEventListener('click', () => {
-        console.log(remove[i].id)
         localStorage.removeItem(remove[i].id)
         location.reload()
     })
